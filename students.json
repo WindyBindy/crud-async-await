@@ -1,0 +1,113 @@
+{
+  "students": [
+    {
+      "name": "Olha",
+      "age": 18,
+      "course": "Game Development",
+      "skills": "C#,Unity",
+      "email": "olha.kovalenko@example.com",
+      "isEnrolled": false,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Dmytro Shevchenko",
+      "age": 14,
+      "course": "Mobile App Development",
+      "skills": [
+        "Java",
+        "Kotlin",
+        "Android Studio"
+      ],
+      "email": "dmytro.shevchenko@example.com",
+      "isEnrolled": false
+    },
+    {
+      "id": 4,
+      "name": "Anastasia Ivanova",
+      "age": 17,
+      "course": "Data Science",
+      "skills": [
+        "Python",
+        "Pandas",
+        "Machine Learning"
+      ],
+      "email": "anastasia.ivanova@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": 5,
+      "name": "Mykola Bondarenko",
+      "age": 15,
+      "course": "Cybersecurity",
+      "skills": [
+        "Networking",
+        "Ethical Hacking",
+        "Linux"
+      ],
+      "email": "mykola.bondarenko@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": 6,
+      "name": "Sofiia Melnyk",
+      "age": 14,
+      "course": "UI/UX Design",
+      "skills": [
+        "Figma",
+        "Adobe XD",
+        "Wireframing"
+      ],
+      "email": "sofiia.melnyk@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": 7,
+      "name": "Artem Koval",
+      "age": 16,
+      "course": "Backend Development",
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "email": "artem.koval@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": 8,
+      "name": "Yuliia Romanenko",
+      "age": 15,
+      "course": "QA Testing",
+      "skills": [
+        "Manual Testing",
+        "Bug Tracking",
+        "Test Cases"
+      ],
+      "email": "yuliia.romanenko@example.com",
+      "isEnrolled": false
+    },
+    {
+      "id": 9,
+      "name": "Maksym Tkachenko",
+      "age": 17,
+      "course": "AI Development",
+      "skills": [
+        "Python",
+        "TensorFlow",
+        "Neural Networks"
+      ],
+      "email": "maksym.tkachenko@example.com",
+      "isEnrolled": true
+    },
+    {
+      "name": "nikit",
+      "age": 13,
+      "course": "frontend",
+      "skills": "frontend, python",
+      "email": "nikitos228@gmail.com",
+      "isEnrolled": false,
+      "id": 10
+    }
+  ]
+}
