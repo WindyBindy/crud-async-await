@@ -1,4 +1,4 @@
-export const updateStuApi = (id, icecream) => {
+export const updateStuApi = async (id, icecream) => {
     const options = {
     method: "PUT",
     body: JSON.stringify(icecream),
@@ -7,5 +7,9 @@ export const updateStuApi = (id, icecream) => {
 
 }}
 
-    return fetch(`http://localhost:3000/students/${id}`, options).then((res) => res.json())
+    const res = await fetch(`http://localhost:3000/students/${id}`, options)
+    if (!res.ok) {
+    throw new Error("Failed!");
+    }
+    return res.json();
 }

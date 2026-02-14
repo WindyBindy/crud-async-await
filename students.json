@@ -1,15 +1,6 @@
 {
   "students": [
     {
-      "name": "Olha",
-      "age": 18,
-      "course": "Game Development",
-      "skills": "C#,Unity",
-      "email": "olha.kovalenko@example.com",
-      "isEnrolled": false,
-      "id": 2
-    },
-    {
       "id": 3,
       "name": "Dmytro Shevchenko",
       "age": 14,
@@ -23,30 +14,13 @@
       "isEnrolled": false
     },
     {
-      "id": 4,
-      "name": "Anastasia Ivanova",
+      "name": "Anastasia",
       "age": 17,
       "course": "Data Science",
-      "skills": [
-        "Python",
-        "Pandas",
-        "Machine Learning"
-      ],
+      "skills": "Python,Pandas,Machine Learning",
       "email": "anastasia.ivanova@example.com",
-      "isEnrolled": true
-    },
-    {
-      "id": 5,
-      "name": "Mykola Bondarenko",
-      "age": 15,
-      "course": "Cybersecurity",
-      "skills": [
-        "Networking",
-        "Ethical Hacking",
-        "Linux"
-      ],
-      "email": "mykola.bondarenko@example.com",
-      "isEnrolled": true
+      "isEnrolled": false,
+      "id": 4
     },
     {
       "id": 6,
@@ -108,6 +82,15 @@
       "email": "nikitos228@gmail.com",
       "isEnrolled": false,
       "id": 10
+    },
+    {
+      "name": "taras",
+      "age": 20,
+      "course": "frontend",
+      "skills": "python, html,css,js,scss",
+      "email": "taras228@gmail.com",
+      "isEnrolled": false,
+      "id": 11
     }
   ]
 }

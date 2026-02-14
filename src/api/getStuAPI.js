@@ -1,4 +1,8 @@
-export const getStuAPI = () => {
-  return fetch("http://localhost:3000/students").then((res) => res.json());
+export const getStuAPI = async () => {
+  const res = await fetch("http://localhost:3000/students")
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+  return res.json();
 };
 

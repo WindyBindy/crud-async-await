@@ -79,7 +79,7 @@ function addStudent(e) {
         isEnrolled: elements.isEnrolled.checked
     }
 StudataGLOBAL = StuData
-    postStuAPI(StuData).then(() => {
+     postStuAPI(StuData).then(() => {
         AddStudentsForm.reset()
        
     })
@@ -117,7 +117,7 @@ console.log(currentEdit);
 })
 
 
-listOfStudents.addEventListener("click", ()=>{
+listOfStudents.addEventListener("click", async ()=>{
 const action = event.target.className
 console.log(action);
 
@@ -127,7 +127,7 @@ console.log(tr);
 
 const id = event.target.id
 if(action === "delete" ){
- deleteStudent(Number(id))
+ await deleteStudent(Number(id))
  console.log(id);
  
  console.log("deleted");

@@ -1,5 +1,9 @@
-export const delStuAPI = (id) => {
-    return fetch(`http://localhost:3000/students/${id}`, {
+export const delStuAPI = async (id) => {
+    const res = await fetch(`http://localhost:3000/students/${id}`, {
         method: "DELETE",
-    }).then((res) => res.json());
+    })
+    if (!res.ok) {
+    throw new Error("Failed!");
+    }
+    return res.json();
 }
