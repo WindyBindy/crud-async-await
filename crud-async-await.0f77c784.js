@@ -207,15 +207,15 @@
       });
     }
   }
-})({"9JJ5D":[function(require,module,exports,__globalThis) {
+})({"7wZbQ":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
-var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "7055c94b59712999";
+module.bundle.HMR_BUNDLE_ID = "9440bf780f77c784";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_SERVER_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -713,8 +713,208 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"4M6V8":[function(require,module,exports,__globalThis) {
+},{}],"2R06K":[function(require,module,exports,__globalThis) {
+var _getstuAPI = require("./api/getstuAPI");
+var _postStuAPI = require("./api/postStuAPI");
+var _delStuAPI = require("./api/delStuAPI");
+var _updateStuAPI = require("./api/updateStuAPI");
+const listOfStudents = document.querySelector(".list-of-students");
+const getStuBtn = document.querySelector("#get-students-btn");
+const AddStudentsForm = document.querySelector("#add-student-form");
+const backdropEl = document.querySelector(".backdrop");
+const formEl = document.querySelector(".modal-form");
+let currentEdit = null;
+getStuBtn.addEventListener("click", ()=>{
+    (0, _getstuAPI.getStuAPI)().then((res)=>getStudents(res));
+});
+function openModal() {
+    backdropEl.style.display = "flex";
+}
+function closeModal() {
+    backdropEl.style.display = "none";
+}
+// Функція для отримання всіх студентів
+function getStudents(array) {
+    // твій код
+    const item = array.map(({ id, name, age, course, skills, email, isEnrolled })=>{
+        return `<tr>
+        <th name="id" class="id">${id}</th>
+        <th name="name" class="name">${name}</th>
+        <th name="age" class="age">${age}</th>
+        <th name="course" class="course">${course}</th>
+        <th name="skills" class="skills">${skills}</th>
+        <th name="email" class="email">${email}</th>
+        <th name="isEnrolled" class="isEnrolled">${isEnrolled}</th>
+        <th name="btns"><button type="button" class="delete" id="${id}">delet</button>
+<button type="button" class="edit">edit</button></th>
+        </tr>`;
+    }).join("");
+    listOfStudents.innerHTML = item;
+}
+// Функція для відображення студентів у таблиці
+function renderStudents(students) {
+// твій код
+}
+// Функція для додавання нового студента
+AddStudentsForm.addEventListener("submit", (e)=>{
+    addStudent(e);
+});
+let StudataGLOBAL = "";
+function addStudent(e) {
+    e.preventDefault();
+    const elements = e.currentTarget.elements;
+    const StuData = {
+        name: elements.name.value.trim(),
+        age: Number(elements.age.value.trim()),
+        course: elements.course.value.trim(),
+        skills: elements.skills.value.trim(),
+        email: elements.email.value.trim(),
+        isEnrolled: elements.isEnrolled.checked
+    };
+    StudataGLOBAL = StuData;
+    (0, _postStuAPI.postStuAPI)(StuData).then(()=>{
+        AddStudentsForm.reset();
+    });
+}
+// Функція для оновлення студента
+function updateStudent(id) {
+// твій код
+}
+formEl.addEventListener("submit", (event1)=>{
+    event1.preventDefault();
+    if (currentEdit) {
+        console.log(currentEdit);
+        const elements = event1.currentTarget.elements;
+        const StuData = {
+            name: elements.name.value.trim(),
+            age: Number(elements.age.value.trim()),
+            course: elements.course.value.trim(),
+            skills: elements.skills.value.trim(),
+            email: elements.email.value.trim(),
+            isEnrolled: elements.isEnrolled.checked
+        };
+        (0, _updateStuAPI.updateStuApi)(currentEdit, StuData).then((res)=>{
+            formEl.reset();
+            closeModal();
+            (0, _getstuAPI.getStuAPI)().then((res)=>getStudents(res));
+        });
+    }
+});
+listOfStudents.addEventListener("click", async ()=>{
+    const action = event.target.className;
+    console.log(action);
+    const tr = event.target.closest("tr");
+    console.log(tr);
+    const id = event.target.id;
+    if (action === "delete") {
+        await deleteStudent(Number(id));
+        console.log(id);
+        console.log("deleted");
+    }
+    if (action === "edit") {
+        console.log("done");
+        const idfixed = tr.querySelector(".id").textContent;
+        currentEdit = idfixed;
+        // formEl.elements.url.value = li.querySelector(".item-img").src;
+        formEl.elements.name.value = tr.querySelector(".name").textContent;
+        formEl.elements.age.value = tr.querySelector(".age").textContent;
+        formEl.elements.course.value = tr.querySelector(".course").textContent;
+        formEl.elements.skills.value = tr.querySelector(".skills").textContent;
+        formEl.elements.email.value = tr.querySelector(".email").textContent;
+        formEl.elements.isEnrolled.value = tr.querySelector(".isEnrolled").textContent;
+        openModal();
+    }
+});
+function deleteStudent(id) {
+    (0, _delStuAPI.delStuAPI)(id).then((res)=>(0, _getstuAPI.getStuAPI)(res)).then((res)=>getStudents(res));
+}
 
-},{}]},["9JJ5D","4M6V8"], "4M6V8", "parcelRequire6793", {})
+},{"./api/getstuAPI":"7BFNK","./api/postStuAPI":"gTNj2","./api/delStuAPI":"5jb1e","./api/updateStuAPI":"jddaW"}],"7BFNK":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getStuAPI", ()=>getStuAPI);
+const getStuAPI = async ()=>{
+    const res = await fetch("http://localhost:3000/students");
+    if (!res.ok) throw new Error("Failed!");
+    return res.json();
+};
 
-//# sourceMappingURL=hw-18-js.59712999.js.map
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"gTNj2":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "postStuAPI", ()=>postStuAPI);
+const postStuAPI = async (students)=>{
+    const options = {
+        method: "POST",
+        body: JSON.stringify(students),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    const res = await fetch("http://localhost:3000/students", options);
+    if (!res.ok) throw new Error("Failed!");
+    return res.json();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5jb1e":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "delStuAPI", ()=>delStuAPI);
+const delStuAPI = async (id)=>{
+    const res = await fetch(`http://localhost:3000/students/${id}`, {
+        method: "DELETE"
+    });
+    if (!res.ok) throw new Error("Failed!");
+    return res.json();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jddaW":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "updateStuApi", ()=>updateStuApi);
+const updateStuApi = async (id, icecream)=>{
+    const options = {
+        method: "PUT",
+        body: JSON.stringify(icecream),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    const res = await fetch(`http://localhost:3000/students/${id}`, options);
+    if (!res.ok) throw new Error("Failed!");
+    return res.json();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire6793", {})
+
+//# sourceMappingURL=crud-async-await.0f77c784.js.map
