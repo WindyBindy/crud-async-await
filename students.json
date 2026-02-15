@@ -1,17 +1,13 @@
 {
   "students": [
     {
-      "id": 3,
-      "name": "Dmytro Shevchenko",
+      "name": "Dmytro",
       "age": 14,
       "course": "Mobile App Development",
-      "skills": [
-        "Java",
-        "Kotlin",
-        "Android Studio"
-      ],
+      "skills": "Java,Kotlin,Android Studio",
       "email": "dmytro.shevchenko@example.com",
-      "isEnrolled": false
+      "isEnrolled": false,
+      "id": 3
     },
     {
       "name": "Anastasia",
@@ -75,15 +71,6 @@
       "isEnrolled": true
     },
     {
-      "name": "nikit",
-      "age": 13,
-      "course": "frontend",
-      "skills": "frontend, python",
-      "email": "nikitos228@gmail.com",
-      "isEnrolled": false,
-      "id": 10
-    },
-    {
       "name": "taras",
       "age": 20,
       "course": "frontend",
@@ -91,6 +78,15 @@
       "email": "taras228@gmail.com",
       "isEnrolled": false,
       "id": 11
+    },
+    {
+      "name": "nikita",
+      "age": 13,
+      "course": "ddf",
+      "skills": "navichki",
+      "email": "gmail@gdf",
+      "isEnrolled": false,
+      "id": 12
     }
   ]
 }

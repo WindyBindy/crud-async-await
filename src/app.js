@@ -10,9 +10,14 @@ const backdropEl = document.querySelector(".backdrop")
 const formEl = document.querySelector(".modal-form")
 
 let currentEdit = null;
-
+const init = async ()=>{
+        const res = await getStuAPI()
+        getStudents(res)
+    }
 getStuBtn.addEventListener("click", ()=>{
-    getStuAPI().then((res) => getStudents(res));
+    init()
+
+    // getStuAPI().then((res) => getStudents(res));
 })
 
 
@@ -64,8 +69,16 @@ function renderStudents(students) {
 AddStudentsForm.addEventListener("submit", (e)=>{
     addStudent(e)
 })
+
+
+
 let StudataGLOBAL = ""
-function addStudent(e) {
+
+
+
+
+
+async function addStudent(e) {
     e.preventDefault()
 
     const elements = e.currentTarget.elements
@@ -79,10 +92,10 @@ function addStudent(e) {
         isEnrolled: elements.isEnrolled.checked
     }
 StudataGLOBAL = StuData
-     postStuAPI(StuData).then(() => {
-        AddStudentsForm.reset()
-       
-    })
+    await postStuAPI(StuData)
+    AddStudentsForm.reset()
+    init()
+    
 }
 
 // Функція для оновлення студента
@@ -93,7 +106,7 @@ function updateStudent(id) {
 
 
 }
-formEl.addEventListener("submit", (event)=>{
+formEl.addEventListener("submit", async (event)=>{
     event.preventDefault()
     
 
@@ -108,11 +121,11 @@ console.log(currentEdit);
         email: elements.email.value.trim(),
         isEnrolled: elements.isEnrolled.checked
     }
-  updateStuApi(currentEdit,StuData).then(res => {
+    await updateStuApi(currentEdit,StuData)
     formEl.reset()
     closeModal()
-    getStuAPI().then((res) => getStudents(res));
-  })
+    init()
+ 
 }
 })
 
