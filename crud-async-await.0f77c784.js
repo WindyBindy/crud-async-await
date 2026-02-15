@@ -724,8 +724,13 @@ const AddStudentsForm = document.querySelector("#add-student-form");
 const backdropEl = document.querySelector(".backdrop");
 const formEl = document.querySelector(".modal-form");
 let currentEdit = null;
+const init = async ()=>{
+    const res = await (0, _getstuAPI.getStuAPI)();
+    getStudents(res);
+};
 getStuBtn.addEventListener("click", ()=>{
-    (0, _getstuAPI.getStuAPI)().then((res)=>getStudents(res));
+    init();
+// getStuAPI().then((res) => getStudents(res));
 });
 function openModal() {
     backdropEl.style.display = "flex";
@@ -760,7 +765,7 @@ AddStudentsForm.addEventListener("submit", (e)=>{
     addStudent(e);
 });
 let StudataGLOBAL = "";
-function addStudent(e) {
+async function addStudent(e) {
     e.preventDefault();
     const elements = e.currentTarget.elements;
     const StuData = {
@@ -772,15 +777,15 @@ function addStudent(e) {
         isEnrolled: elements.isEnrolled.checked
     };
     StudataGLOBAL = StuData;
-    (0, _postStuAPI.postStuAPI)(StuData).then(()=>{
-        AddStudentsForm.reset();
-    });
+    await (0, _postStuAPI.postStuAPI)(StuData);
+    AddStudentsForm.reset();
+    init();
 }
 // Функція для оновлення студента
 function updateStudent(id) {
 // твій код
 }
-formEl.addEventListener("submit", (event1)=>{
+formEl.addEventListener("submit", async (event1)=>{
     event1.preventDefault();
     if (currentEdit) {
         console.log(currentEdit);
@@ -793,11 +798,10 @@ formEl.addEventListener("submit", (event1)=>{
             email: elements.email.value.trim(),
             isEnrolled: elements.isEnrolled.checked
         };
-        (0, _updateStuAPI.updateStuApi)(currentEdit, StuData).then((res)=>{
-            formEl.reset();
-            closeModal();
-            (0, _getstuAPI.getStuAPI)().then((res)=>getStudents(res));
-        });
+        await (0, _updateStuAPI.updateStuApi)(currentEdit, StuData);
+        formEl.reset();
+        closeModal();
+        init();
     }
 });
 listOfStudents.addEventListener("click", async ()=>{
